@@ -15,7 +15,7 @@ public class QueuePrints implements Runnable {
                 int printerID = this.printersMonitor.reservePrinter();
                 System.out.println("Printer nr. " + printerID + " is reserved by thread nr. " + id);
                 Thread.sleep(1000);
-                this.printersMonitor.print(printerID);
+                this.printersMonitor.print(printerID, id);
                 this.printersMonitor.releasePrinter(printerID);
                 i++;
             } catch (InterruptedException e) {

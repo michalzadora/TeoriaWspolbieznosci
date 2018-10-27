@@ -43,8 +43,8 @@ public class PrintersMonitor {
     }
 
 
-    void print(int printerID) throws InterruptedException {
-        this.printers[printerID].print();
+    void print(int printerID, int ID) throws InterruptedException {
+        this.printers[printerID].print(ID);
     }
 
 

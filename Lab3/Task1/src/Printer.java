@@ -5,8 +5,8 @@ public class Printer {
         this.id = id;
     }
 
-    void print() throws InterruptedException{
-        System.out.println("Printer nr. " + this.id + " prints.");
+    void print(int ID) throws InterruptedException{
+        System.out.println("Printer nr. " + this.id + " prints something from Thread nr. " + ID);
         Thread.sleep(1000);
     }
 
