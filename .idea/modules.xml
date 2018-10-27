@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Lab3/Lab3.iml" filepath="$PROJECT_DIR$/Lab3/Lab3.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lab3/Task1/Task1.iml" filepath="$PROJECT_DIR$/Lab3/Task1/Task1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Lab3/Task2/Task2.iml" filepath="$PROJECT_DIR$/Lab3/Task2/Task2.iml" />
       <module fileurl="file://$PROJECT_DIR$/TeoriaWspolbieznosci.iml" filepath="$PROJECT_DIR$/TeoriaWspolbieznosci.iml" />
     </modules>
   </component>
