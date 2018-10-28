@@ -27,7 +27,7 @@ public class PrintersMonitor {
             while (printersQueue.size() == 0) {
                 empty.await();
             }
-            Printer p = this.printersQueue.poll();
+            Printer p = this.printersQueue.remove();
             return p.getId();
         } finally {
             lock.unlock();

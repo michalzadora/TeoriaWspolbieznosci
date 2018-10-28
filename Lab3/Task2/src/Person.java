@@ -1,12 +1,14 @@
 import com.sun.xml.internal.bind.v2.TODO;
 
-public class Person implements Runnable{
+public class Person implements Runnable {
     private final Waiter waiter;
     private final int pairID;
+    private final int personID;
 
-    public Person(Waiter waiter, int pairID) {
+    public Person(Waiter waiter, int pairID, int ID) {
         this.waiter = waiter;
         this.pairID = pairID;
+        this.personID = ID;
     }
 
 
@@ -14,7 +16,7 @@ public class Person implements Runnable{
     public void run() {
         int i = 0;
         while (i != 5) {
-            try{
+            try {
                 doThings();
                 waiter.reserveTable(pairID);
                 eat();
@@ -31,7 +33,7 @@ public class Person implements Runnable{
     }
 
     void eat() throws InterruptedException {
-        System.out.println("Pair nr. " + this.pairID + " eating.");
+        System.out.println("Person ID " + this.personID + " eating from pair " + this.pairID);
         Thread.sleep(1000);
     }
 

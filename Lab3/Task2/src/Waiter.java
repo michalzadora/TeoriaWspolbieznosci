@@ -10,7 +10,9 @@ public class Waiter {
     private final List<Condition> waitOnSec = new ArrayList<>();
     private Boolean[] firstPeople;
     private Boolean free;
+    private Boolean isPairLeft;
     private int reservedByPairID;
+
 
     public Waiter(int ammountOfPairs) {
         firstPeople = new Boolean[ammountOfPairs];
@@ -19,6 +21,7 @@ public class Waiter {
             this.firstPeople[i] = false;
         }
         this.free = true;
+        this.isPairLeft = false;
     }
 
 
@@ -27,12 +30,12 @@ public class Waiter {
         try {
             while (!firstPeople[pairID]) {
                 firstPeople[pairID] = true;
-                System.out.println("First part of pair " + pairID + " is waiting for companiero.");
+//                System.out.println("First part of pair " + pairID + " is waiting for companiero.");
                 waitOnSec.get(pairID).await();
             }
             waitOnSec.get(pairID).signal();
-            while (!free) {
-                System.out.println("Pair " + pairID + " is waiting for table.");
+            while (!free && reservedByPairID != pairID) {
+//                System.out.println("Pair " + pairID + " is waiting for table.");
                 waitTable.await();
             }
             this.free = false;
@@ -43,12 +46,20 @@ public class Waiter {
     }
 
 
-    public void releaseTable(){
+    public void releaseTable() {
         lock.lock();
-        try{
-            firstPeople[reservedByPairID] = false;
-            free = true;
-            waitTable.signalAll();
+        try {
+            if(isPairLeft) {
+                firstPeople[reservedByPairID] = false;
+                free = true;
+                System.out.println("Second person from pair " + this.reservedByPairID + " is leaving from table");
+                waitTable.signalAll();
+                isPairLeft = false;
+            }
+            else{
+                isPairLeft = true;
+                System.out.println("First person from pair " + this.reservedByPairID + " is leaving from table");
+            }
         } finally {
             lock.unlock();
         }
