@@ -32,9 +32,9 @@ public class TimeMeasurementRepository {
         if (this.resultsGet[size].compareTo(measurement) < 0) throw new IllegalStateException("Overflow");
     }
 
-    public synchronized void printResults(String algo){
+    public synchronized void printResults(){
         try {
-            PrintWriter writer = new PrintWriter(String.format("put%s_%s.txt", this.name, algo), "UTF-8");
+            PrintWriter writer = new PrintWriter(String.format("put%s.txt", this.name), "UTF-8");
             for (int i = 0; i < resultsPut.length; i++) {
                 if (numberOfResultsPut[i] != 0) {
                     BigDecimal divisor = new BigDecimal(numberOfResultsPut[i]);
@@ -45,7 +45,7 @@ public class TimeMeasurementRepository {
                 }
             }
             writer.close();
-            writer = new PrintWriter(String.format("get%s_%s.txt", this.name, algo), "UTF-8");
+            writer = new PrintWriter(String.format("get%s.txt", this.name), "UTF-8");
             for (int i = 0; i < resultsGet.length; i++) {
                 if (numberOfResultsGet[i] != 0) {
                     BigDecimal divisor = new BigDecimal(numberOfResultsGet[i]);

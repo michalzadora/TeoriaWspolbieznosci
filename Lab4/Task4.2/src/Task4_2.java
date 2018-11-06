@@ -14,7 +14,7 @@ public class Task4_2 {
         BufferNotNaiwny bufferNotNaiwny = new BufferNotNaiwny(M);
         Random gene = new Random();
         TimeMeasurementRepository tmr_naive = new TimeMeasurementRepository(M, amountOfPaC + "_" + M);
-        TimeMeasurementRepository tmr = new TimeMeasurementRepository(M, amountOfPaC + "_" + M);
+        TimeMeasurementRepository tmr = new TimeMeasurementRepository(M, amountOfPaC + "_fair_" + M);
         for (int i = 0; i < amountOfPaC; i++) {
 
             new Thread(new Runnable() {
@@ -38,8 +38,8 @@ public class Task4_2 {
 
                         }
                         System.out.println("Stop production");
-                        tmr.printResults("fair");
-                        tmr_naive.printResults("naive");
+                        tmr.printResults();
+                        tmr_naive.printResults();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
 
